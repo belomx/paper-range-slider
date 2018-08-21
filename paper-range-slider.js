@@ -23,6 +23,7 @@ See README.md for further details.
 @element paper-range-slider
 @demo demo/index.html
 */
+import { Polymer } from '@polymer/polymer/polymer-legacy.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
@@ -1225,6 +1226,7 @@ class PaperRangeSlider extends GestureEventListeners(PolymerElement) {
   }
 }
 customElements.define(PaperRangeSlider.is, PaperRangeSlider);
+
 /* paper-single-range-slider is a modified version of [paper-slider, v2.0.2] */
 /*
   FIXME(polymer-modulizer): the above comments were extracted
