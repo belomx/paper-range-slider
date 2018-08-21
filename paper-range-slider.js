@@ -23,11 +23,10 @@ See README.md for further details.
 @element paper-range-slider
 @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="paper-single-range-slider">
@@ -325,9 +324,9 @@ $_documentContainer.innerHTML = `<dom-module id="paper-single-range-slider">
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
-class PaperRangeSlider extends Polymer.GestureEventListeners(Polymer.Element) {
+class PaperRangeSlider extends GestureEventListeners(PolymerElement) {
   static get template() {
-    return Polymer.html`
+    return html`
         <style>
             /* local styles go here */
             :host {
