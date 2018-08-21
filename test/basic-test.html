@@ -1,5 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../paper-range-slider.html">
+<script type="module" src="../paper-range-slider.js"></script>
 
 
 <dom-module id="basic-test">
@@ -38,60 +38,60 @@
 
   </template>
 
-  <script>
-    class BasicTest extends Polymer.Element {
-      static get is() { return 'basic-test' }
+  <script type="module">
+import '../paper-range-slider.js';
+class BasicTest extends Polymer.Element {
+  static get is() { return 'basic-test' }
 
-      ready() {
-        super.ready();
-        var _this = this;
-        setTimeout(function() { _this._ready(); }.bind(this), 0);
-      }
-      
-      _ready(){
-        this.shadowRoot.querySelector("#mySlider0").setTapValueExtend(true);
-        this.shadowRoot.querySelector("#mySlider0").setTapValueReduce(true);
-        this.shadowRoot.querySelector("#mySlider0").setTapValueMove(false);
+  ready() {
+    super.ready();
+    var _this = this;
+    setTimeout(function() { _this._ready(); }.bind(this), 0);
+  }
+  
+  _ready(){
+    this.shadowRoot.querySelector("#mySlider0").setTapValueExtend(true);
+    this.shadowRoot.querySelector("#mySlider0").setTapValueReduce(true);
+    this.shadowRoot.querySelector("#mySlider0").setTapValueMove(false);
 
-        this.shadowRoot.querySelector("#mySlider1").setTapValueExtend(true);
-        this.shadowRoot.querySelector("#mySlider1").setTapValueReduce(false);
-        this.shadowRoot.querySelector("#mySlider1").setTapValueMove(false);
-        
-        this.shadowRoot.querySelector("#mySlider2").setTapValueExtend(true);
-        this.shadowRoot.querySelector("#mySlider2").setTapValueReduce(true);
-        this.shadowRoot.querySelector("#mySlider2").setTapValueMove(true);
-        
-        this.shadowRoot.querySelector("#mySlider3").setTapValueExtend(true);
-        this.shadowRoot.querySelector("#mySlider3").setTapValueReduce(false);
-        this.shadowRoot.querySelector("#mySlider3").setTapValueMove(true);
+    this.shadowRoot.querySelector("#mySlider1").setTapValueExtend(true);
+    this.shadowRoot.querySelector("#mySlider1").setTapValueReduce(false);
+    this.shadowRoot.querySelector("#mySlider1").setTapValueMove(false);
+    
+    this.shadowRoot.querySelector("#mySlider2").setTapValueExtend(true);
+    this.shadowRoot.querySelector("#mySlider2").setTapValueReduce(true);
+    this.shadowRoot.querySelector("#mySlider2").setTapValueMove(true);
+    
+    this.shadowRoot.querySelector("#mySlider3").setTapValueExtend(true);
+    this.shadowRoot.querySelector("#mySlider3").setTapValueReduce(false);
+    this.shadowRoot.querySelector("#mySlider3").setTapValueMove(true);
 
-        this.shadowRoot.querySelector("#mySlider3").addEventListener('updateValues', function (customEvent) {
-            console.log(' - current min/max values: ',this.valueMin,this.valueMax)
+    this.shadowRoot.querySelector("#mySlider3").addEventListener('updateValues', function (customEvent) {
+        console.log(' - current min/max values: ',this.valueMin,this.valueMax)
+    });
+
+    var myMin = 10, myMax = 90, myStep = 5, difMin = 10, difMax = 40;
+    this.shadowRoot.querySelector("#mySlider2").setValues(myMin,myMax);
+    this.shadowRoot.querySelector("#mySlider3").setMin(myMin);
+    this.shadowRoot.querySelector("#mySlider3").setMax(myMax);
+    this.shadowRoot.querySelector("#mySlider3").setStep(myStep);
+    this.shadowRoot.querySelector("#mySlider3").setValueDiffMin(difMin);
+    this.shadowRoot.querySelector("#mySlider3").setValueDiffMax(difMax);
+    this.shadowRoot.querySelector("#mySlider4").setDisabled(true);
+
+    var _this = this;
+    setTimeout(function() {
+        _this.shadowRoot.querySelector("#mySlider5").updateStyles({
+          '--paper-range-slider-active-color': '#C2185B'
         });
 
-        var myMin = 10, myMax = 90, myStep = 5, difMin = 10, difMax = 40;
-        this.shadowRoot.querySelector("#mySlider2").setValues(myMin,myMax);
-        this.shadowRoot.querySelector("#mySlider3").setMin(myMin);
-        this.shadowRoot.querySelector("#mySlider3").setMax(myMax);
-        this.shadowRoot.querySelector("#mySlider3").setStep(myStep);
-        this.shadowRoot.querySelector("#mySlider3").setValueDiffMin(difMin);
-        this.shadowRoot.querySelector("#mySlider3").setValueDiffMax(difMax);
-        this.shadowRoot.querySelector("#mySlider4").setDisabled(true);
-
-        var _this = this;
-        setTimeout(function() {
-            _this.shadowRoot.querySelector("#mySlider5").updateStyles({
-              '--paper-range-slider-active-color': '#C2185B'
-            });
-
-            _this.shadowRoot.querySelector("#mySlider5").alwaysShowPin = true;
-            _this.shadowRoot.querySelector("#mySlider5").sliderWidth   = "600px";
-            _this.shadowRoot.querySelector("#mySlider5").init();
-        }, 2000);
-      }
-    }
-    customElements.define(BasicTest.is, BasicTest);
-
-  </script>
+        _this.shadowRoot.querySelector("#mySlider5").alwaysShowPin = true;
+        _this.shadowRoot.querySelector("#mySlider5").sliderWidth   = "600px";
+        _this.shadowRoot.querySelector("#mySlider5").init();
+    }, 2000);
+  }
+}
+customElements.define(BasicTest.is, BasicTest);
+</script>
 </dom-module>
 
