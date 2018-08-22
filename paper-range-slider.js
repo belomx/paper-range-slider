@@ -28,6 +28,14 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 
+import '@polymer/paper-progress/paper-progress.js';
+import '@polymer/paper-input/paper-input.js';
+
+import { IronA11yKeysBehavior } from '@polymer/iron-a11y-keys-behavior'
+import { IronFormElementBehavior } from '@polymer/iron-form-element-behavior'
+import { PaperInkyFocusBehavior, PaperInkyFocusBehaviorImpl } from '@polymer/paper-behaviors/paper-inky-focus-behavior.js'
+import { IronRangeBehavior } from '@polymer/iron-range-behavior'
+
 class PaperRangeSlider extends GestureEventListeners(PolymerElement) {
   static get template() {
     return html`
@@ -937,9 +945,11 @@ customElements.define(PaperRangeSlider.is, PaperRangeSlider);
   then delete this comment!
 */
 Polymer({
+// class PaperSingleRangeSlider extends GestureEventListeners(PolymerElement) {
+  // static get is() { return 'paper-single-range-slider' }
   is: 'paper-single-range-slider',
 
-  _template: html`<template strip-whitespace="">
+  _template: html`
   <style>
     :host {
       @apply --layout;
@@ -1227,13 +1237,13 @@ Polymer({
     <paper-input id="input" type="number" step="[[step]]" min="[[min]]" max="[[max]]" class="slider-input" disabled\$="[[disabled]]" value="[[immediateValue]]" on-change="_changeValue" on-keydown="_inputKeyDown" no-label-float="">
     </paper-input>
   </template>
-</template>`,
+`,
 
   behaviors: [
-    Polymer.IronA11yKeysBehavior,
-    Polymer.IronFormElementBehavior,
-    Polymer.PaperInkyFocusBehavior,
-    Polymer.IronRangeBehavior
+    IronA11yKeysBehavior,
+    IronFormElementBehavior,
+    PaperInkyFocusBehavior,
+    IronRangeBehavior
   ],
 
   properties: {
@@ -1628,7 +1638,7 @@ Polymer({
   // create the element ripple inside the `sliderKnob`
   _createRipple: function() {
     this._rippleContainer = this.$.sliderKnob;
-    return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
+    return PaperInkyFocusBehaviorImpl._createRipple.call(this);
   },
 
   // Hide the ripple when user is not interacting with keyboard.
